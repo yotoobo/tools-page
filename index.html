@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,7 @@
             --text-main: #2c3e50;
             --text-sub: #6c757d;
             --accent: #007bff;
-            --hover-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            --hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         }
 
         body {
@@ -28,7 +29,7 @@
 
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 1100px;
         }
 
         header {
@@ -121,6 +122,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -135,7 +137,8 @@
         </div>
 
         <footer>
-            &copy; <script>document.write(new Date().getFullYear())</script> Local Tools
+            &copy;
+            <script>document.write(new Date().getFullYear())</script> Local Tools
         </footer>
     </div>
 
@@ -155,6 +158,18 @@
                 desc: "纯HTML5图片压缩工具，支持中英文，保护隐私。",
                 icon: "📸"
             },
+            {
+                url: "uuid.html",
+                title: "UUID Generator",
+                desc: "批量生成 UUID v4，支持自定义格式（大小写、连字符）。",
+                icon: "🆔"
+            },
+            {
+                url: "qrcode.html",
+                title: "QR Code Reader",
+                desc: "识别二维码图片，支持从剪贴板粘贴与文件上传。",
+                icon: "📷"
+            },
             // 示例：你可以取消注释下面的代码来添加更多页面
             /*
             {
@@ -173,7 +188,7 @@
             const card = document.createElement('a');
             card.href = page.url;
             card.className = 'card';
-            
+
             card.innerHTML = `
                 <div class="card-icon">${page.icon}</div>
                 <h2 class="card-title">${page.title}</h2>
@@ -185,4 +200,5 @@
         });
     </script>
 </body>
+
 </html>

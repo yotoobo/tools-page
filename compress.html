@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             --card-bg: #ffffff;
             --text-color: #333;
             --text-secondary: #666;
+            --accent-hover: #0056b3;
         }
 
         body {
@@ -22,6 +24,19 @@
             padding: 20px;
             margin: 0;
             color: var(--text-color);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
         }
 
         .lang-switch {
@@ -37,18 +52,29 @@
         }
 
         .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .card {
             background: var(--card-bg);
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            max-width: 800px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 100%;
             text-align: center;
-            margin-top: 20px;
+            box-sizing: border-box;
         }
 
-        h1 { margin-bottom: 10px; }
-        .subtitle { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 25px; }
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
 
         .controls {
             margin: 20px 0;
@@ -58,7 +84,9 @@
             transition: border-color 0.3s;
         }
 
-        .controls:hover { border-color: var(--primary-color); }
+        .controls:hover {
+            border-color: var(--primary-color);
+        }
 
         .range-wrap {
             margin: 20px 0 10px;
@@ -74,7 +102,9 @@
             cursor: pointer;
         }
 
-        input[type="file"] { display: none; }
+        input[type="file"] {
+            display: none;
+        }
 
         .btn {
             display: inline-block;
@@ -90,8 +120,10 @@
             font-weight: 500;
         }
 
-        .btn:hover { background-color: #0056b3; }
-        
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
         .btn.disabled {
             background-color: #ccc;
             cursor: not-allowed;
@@ -114,10 +146,14 @@
             background: #fff;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        .image-card h3 { margin-top: 0; font-size: 1.1rem; color: #444; }
+        .image-card h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: #444;
+        }
 
         .img-wrapper {
             height: 250px;
@@ -146,66 +182,75 @@
             border-bottom: 1px dotted #eee;
             padding-bottom: 5px;
         }
-        
-        .info-row strong { color: #333; }
-        
-        .download-area { margin-top: 15px; }
 
+        .info-row strong {
+            color: #333;
+        }
+
+        .download-area {
+            margin-top: 15px;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- 语言切换按钮 -->
     <button class="lang-switch" id="langSwitch" onclick="toggleLanguage()">中文 / English</button>
 
     <div class="container">
-        <h1 id="txt_title">📸 Local Image Compressor</h1>
-        <p class="subtitle" id="txt_subtitle">All operations are done locally. No images are uploaded to servers.</p>
+        <a href="index.html" class="back-link">← Back to Tools</a>
 
-        <!-- 控制区 -->
-        <div class="controls">
-            <label for="fileInput" class="btn" id="txt_selectBtn">📂 Select Image</label>
-            <input type="file" id="fileInput" accept="image/*">
-            
-            <div class="range-wrap">
-                <span id="txt_qualityLabel">Quality:</span>
-                <input type="range" id="qualityRange" min="0.1" max="1" step="0.1" value="0.7">
-                <span id="qualityValue">0.7</span>
-            </div>
-        </div>
+        <div class="card">
+            <h1 id="txt_title">📸 Local Image Compressor</h1>
+            <p class="subtitle" id="txt_subtitle">All operations are done locally. No images are uploaded to servers.
+            </p>
 
-        <!-- 预览区 -->
-        <div class="preview-area" id="previewArea" style="display: none;">
-            <!-- 原图 -->
-            <div class="image-card">
-                <h3 id="txt_originalTitle">Original Image</h3>
-                <div class="img-wrapper">
-                    <img id="originalImg" src="" alt="Original">
-                </div>
-                <div class="info-row">
-                    <span id="txt_sizeLabel1">Size:</span>
-                    <strong id="originalSize">0 KB</strong>
+            <!-- 控制区 -->
+            <div class="controls">
+                <label for="fileInput" class="btn" id="txt_selectBtn">📂 Select Image</label>
+                <input type="file" id="fileInput" accept="image/*">
+
+                <div class="range-wrap">
+                    <span id="txt_qualityLabel">Quality:</span>
+                    <input type="range" id="qualityRange" min="0.1" max="1" step="0.1" value="0.7">
+                    <span id="qualityValue">0.7</span>
                 </div>
             </div>
 
-            <!-- 压缩后 -->
-            <div class="image-card">
-                <h3 id="txt_compressedTitle">Compressed Result</h3>
-                <div class="img-wrapper">
-                    <img id="compressedImg" src="" alt="Compressed">
+            <!-- 预览区 -->
+            <div class="preview-area" id="previewArea" style="display: none;">
+                <!-- 原图 -->
+                <div class="image-card">
+                    <h3 id="txt_originalTitle">Original Image</h3>
+                    <div class="img-wrapper">
+                        <img id="originalImg" src="" alt="Original">
+                    </div>
+                    <div class="info-row">
+                        <span id="txt_sizeLabel1">Size:</span>
+                        <strong id="originalSize">0 KB</strong>
+                    </div>
                 </div>
-                <div class="info-row">
-                    <span id="txt_sizeLabel2">Size:</span>
-                    <strong id="compressedSize">0 KB</strong>
-                </div>
-                <div class="info-row">
-                    <span id="txt_rateLabel">Saved:</span>
-                    <strong id="compressionRate">0%</strong>
-                </div>
-                <div class="download-area">
-                    <a id="downloadBtn" class="btn disabled" download="compressed.jpg">
-                        <span id="txt_downloadBtn">⬇️ Download</span>
-                    </a>
+
+                <!-- 压缩后 -->
+                <div class="image-card">
+                    <h3 id="txt_compressedTitle">Compressed Result</h3>
+                    <div class="img-wrapper">
+                        <img id="compressedImg" src="" alt="Compressed">
+                    </div>
+                    <div class="info-row">
+                        <span id="txt_sizeLabel2">Size:</span>
+                        <strong id="compressedSize">0 KB</strong>
+                    </div>
+                    <div class="info-row">
+                        <span id="txt_rateLabel">Saved:</span>
+                        <strong id="compressionRate">0%</strong>
+                    </div>
+                    <div class="download-area">
+                        <a id="downloadBtn" class="btn disabled" download="compressed.jpg">
+                            <span id="txt_downloadBtn">⬇️ Download</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -263,7 +308,7 @@
         function applyLanguage(lang) {
             currentLang = lang;
             const t = i18nData[lang];
-            
+
             els.title.innerText = t.title;
             els.subtitle.innerText = t.subtitle;
             els.selectBtn.innerText = t.selectBtn;
@@ -274,7 +319,7 @@
             els.sizeLabel2.innerText = t.sizeLabel;
             els.rateLabel.innerText = t.rateLabel;
             els.downloadBtn.innerText = t.downloadBtn;
-            
+
             document.documentElement.lang = lang;
         }
 
@@ -283,8 +328,8 @@
             const newLang = currentLang === 'zh' ? 'en' : 'zh';
             applyLanguage(newLang);
             // 如果已经加载了图片，重新生成文件名（为了后缀）
-            if(currentFile) {
-                updateDownloadLink(compressedImg.src); 
+            if (currentFile) {
+                updateDownloadLink(compressedImg.src);
             }
         }
 
@@ -317,7 +362,7 @@
         fileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
-            
+
             if (!file.type.match('image.*')) {
                 alert(i18nData[currentLang].alertFile);
                 return;
@@ -325,7 +370,7 @@
 
             currentFile = file;
             originalSize.textContent = formatSize(file.size);
-            
+
             const reader = new FileReader();
             reader.onload = (e) => {
                 originalImg.src = e.target.result;
@@ -352,13 +397,13 @@
         function updateDownloadLink(blobUrl) {
             downloadAnchor.href = blobUrl;
             downloadAnchor.classList.remove('disabled');
-            
+
             // 处理文件名
             const originalName = currentFile.name;
             const dotIndex = originalName.lastIndexOf('.');
             const baseName = dotIndex !== -1 ? originalName.substring(0, dotIndex) : originalName;
             const suffix = i18nData[currentLang].fileNameSuffix;
-            
+
             downloadAnchor.download = `${baseName}${suffix}.jpg`;
         }
 
@@ -379,7 +424,7 @@
                 if (!blob) return;
 
                 const url = URL.createObjectURL(blob);
-                
+
                 // 释放旧的 URL 对象，防止内存泄漏
                 if (compressedImg.src && compressedImg.src.startsWith('blob:')) {
                     URL.revokeObjectURL(compressedImg.src);
@@ -387,15 +432,16 @@
 
                 compressedImg.src = url;
                 compressedSize.textContent = formatSize(blob.size);
-                
+
                 let rate = ((currentFile.size - blob.size) / currentFile.size * 100).toFixed(2);
                 if (rate < 0) rate = 0; // 防止变大时显示负数
                 compressionRate.textContent = rate + '%';
-                
+
                 updateDownloadLink(url);
 
             }, 'image/jpeg', parseFloat(quality));
         }
     </script>
 </body>
+
 </html>
