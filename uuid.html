@@ -1,189 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UUID Generator | Tools</title>
-    <style>
-        :root {
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-main: #2c3e50;
-            --text-sub: #6c757d;
-            --accent: #007bff;
-            --accent-hover: #0056b3;
-            --border: #eaeaea;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: var(--text-sub);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-
-        .back-link:hover {
-            color: var(--accent);
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
-        }
-
-        h1 {
-            margin: 0 0 20px 0;
-            font-weight: 300;
-            font-size: 2rem;
-            text-align: center;
-        }
-
-        .controls {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .control-group {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        label {
-            font-weight: 500;
-            color: var(--text-main);
-        }
-
-        input[type="number"] {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            width: 80px;
-            font-size: 1rem;
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked+.slider {
-            background-color: var(--accent);
-        }
-
-        input:checked+.slider:before {
-            transform: translateX(26px);
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .output-area {
-            margin-top: 25px;
-            position: relative;
-        }
-
-        textarea {
-            width: 100%;
-            height: 300px;
-            padding: 15px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-            font-size: 0.9rem;
-            resize: vertical;
-            box-sizing: border-box;
-            background-color: #fcfcfc;
-            color: #333;
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 1px solid #ddd;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        .copy-btn:hover {
-            background-color: #fff;
-            color: var(--accent);
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
@@ -192,16 +14,17 @@
         <a href="index.html" class="back-link">← Back to Tools</a>
 
         <div class="card">
-            <h1>UUID Generator</h1>
+            <h1 class="text-center">UUID Generator</h1>
 
-            <div class="controls">
+            <div class="controls mb-4">
                 <div class="control-group">
                     <label for="count">Quantity (1-1000)</label>
-                    <input type="number" id="count" value="1" min="1" max="1000">
+                    <input type="number" id="count" value="1" min="1" max="1000" class="form-control"
+                        style="width: 100px;">
                 </div>
 
                 <div class="control-group">
-                    <label for="hyphens">Hyphens</label>
+                    <label>Include Hyphens</label>
                     <label class="toggle-switch">
                         <input type="checkbox" id="hyphens" checked>
                         <span class="slider"></span>
@@ -209,26 +32,27 @@
                 </div>
 
                 <div class="control-group">
-                    <label for="uppercase">Uppercase</label>
+                    <label>Uppercase</label>
                     <label class="toggle-switch">
                         <input type="checkbox" id="uppercase">
                         <span class="slider"></span>
                     </label>
                 </div>
 
-                <button class="btn" id="generateBtn">Generate UUIDs</button>
+                <button class="btn btn--primary w-full" id="generateBtn">Generate UUIDs</button>
             </div>
 
-            <div class="output-area">
-                <textarea id="output" readonly></textarea>
-                <button class="copy-btn" id="copyBtn">Copy</button>
+            <div class="output-area relative">
+                <textarea id="output" class="uuid-output form-control" readonly
+                    placeholder="Generated UUIDs will appear here..."></textarea>
+                <button class="btn" id="copyBtn"
+                    style="position:absolute; top:10px; right:10px; padding: 4px 8px; font-size: 12px; background: rgba(255,255,255,0.9); border: 1px solid var(--border-color);">Copy</button>
             </div>
         </div>
     </div>
 
     <script>
         function generateUUID() {
-            // Basic UUID v4 generation
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
                 var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
                 return v.toString(16);
@@ -243,15 +67,8 @@
             let results = [];
             for (let i = 0; i < count; i++) {
                 let uuid = generateUUID();
-
-                if (!useHyphens) {
-                    uuid = uuid.replace(/-/g, '');
-                }
-
-                if (useUppercase) {
-                    uuid = uuid.toUpperCase();
-                }
-
+                if (!useHyphens) uuid = uuid.replace(/-/g, '');
+                if (useUppercase) uuid = uuid.toUpperCase();
                 results.push(uuid);
             }
 
@@ -262,10 +79,9 @@
 
         document.getElementById('copyBtn').addEventListener('click', () => {
             const output = document.getElementById('output');
-            output.select();
-            document.execCommand('copy'); // Fallback for older browsers
+            if (!output.value) return;
 
-            // Modern API
+            output.select();
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(output.value).then(() => {
                     const btn = document.getElementById('copyBtn');
@@ -276,10 +92,8 @@
             }
         });
 
-        // Generate one on load
         generate();
     </script>
-
 </body>
 
 </html>
