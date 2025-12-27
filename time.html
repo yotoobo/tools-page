@@ -293,10 +293,10 @@
             let colorClass = "";
 
             // Allow 500ms of error margin as "Accurate" due to HTTP non-determinism
-            if (absDiff < 500) {
+            if (absDiff < 100) {
                 diffStr = "非常准确";
                 colorClass = "accurate";
-                offsetDesc.textContent = `系统时间与标准时间几乎一致 (误差 < 0.5秒)`;
+                offsetDesc.textContent = `系统时间与标准时间几乎一致 (误差 < 0.1 秒)`;
             } else {
                 // convert to seconds if large
                 if (absDiff >= 1000) {
